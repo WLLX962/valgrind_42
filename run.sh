@@ -1,5 +1,5 @@
 #!/bin/sh
 
-docker build -t $(whoami)/valgrind .
-docker run -d -it -v `pwd`:/valgrind/ --name $USER-valgrind $(whoami)/valgrind
-docker exec -it $USER-valgrind bash
+docker run --rm -it -v `pwd`:/valgrind/ --name $USER-valgrind $(whoami)/valgrind bash
+#docker exec -it $USER-valgrind bash
+#docker container stop $(whoami)-valgrind
