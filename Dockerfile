@@ -3,6 +3,9 @@
 FROM ubuntu:focal
 LABEL description="Valgrind"
 
+# skip "Country of origin for keyboard"
+ENV DEBIAN_FRONTEND=noninteractive
+
 # timezone
 ENV TZ=America/Sao_Paulo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -13,7 +16,10 @@ RUN apt-get -y update && apt-get -y upgrade
 # install essentials libs
 RUN apt-get -y install \
     vim build-essential git-core cmake make clang gcc \
-    valgrind libxext-dev libbsd-dev xorg
+    valgrind libxext-dev libbsd-dev
+
+# disable for now
+# RUN apt-get -y install xorg
 
 # add/enabled man-db
 RUN apt-get -y install && yes | unminimize
