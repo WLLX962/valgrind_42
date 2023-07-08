@@ -32,6 +32,12 @@ RUN apt-get -y install \
 RUN python3 -m pip install --upgrade \
     pip setuptools && python3 -m pip install norminette
 
+# francinette
+RUN apt-get -y install curl lsb-core virtualenv sudo libpq-dev \
+    python3-dev python3-venv python3-wheel
+RUN pip3 install wheel
+RUN bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
+
 #clean
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 WORKDIR /valgrind
